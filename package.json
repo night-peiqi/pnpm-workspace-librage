@@ -1,0 +1,18 @@
+{
+  "private": true,
+  "scripts": {
+    "dev": "pnpm -C example dev"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.0.2",
+    "vue": "^3.2.36"
+  },
+  "dependencies": {
+    "@cq/components": "workspace:^1.0.0",
+    "@cq/theme-chalk": "workspace:^1.0.0",
+    "@cq/utils": "workspace:^1.0.0"
+  }
+}

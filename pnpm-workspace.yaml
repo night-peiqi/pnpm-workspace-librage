@@ -1,0 +1,4 @@
+# pnpm 实现 monorepo 核心文件
+packages:
+  - 'packages/**' # 存放编写的组件的目录
+  - example # 本地调试组件使用
