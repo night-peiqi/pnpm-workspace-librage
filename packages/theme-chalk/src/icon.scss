@@ -1,7 +1,7 @@
 @use './mixins/mixins.scss';
 
 @font-face {
-  font-family: "#{$namaspace}-icon-ui"; /* Project id 3989048 */
+  font-family: "cq-icon-ui"; /* Project id 3989048 */
   src: url('./fonts/iconfont.woff2') format('woff2'),
        url('./fonts/iconfont.woff') format('woff'),
        url('./fonts/iconfont.ttf') format('truetype');
@@ -20,7 +20,7 @@
 // 上面这种使用方式略显麻烦，每次都要写一下cq-icon-ui类名，
 // 因为 icon 组件内默认会有一个 cq-icon 的类名，所以进行以下优化，优化后的使用方法
 // <div class="cq-icon-heikeji"></div>
-[class^='#{$namespace}-icon'], [class*='#{$namespace}-icon'] {
+[class^='cq-icon'], [class*='cq-icon'] {
   font-family: "cq-icon-ui" !important;
   font-size: 16px;
   font-style: normal;
@@ -29,27 +29,27 @@
 }
 
 
-.#{$namaspace}-icon-heikeji:before {
+.cq-icon-heikeji:before {
   content: "\e700";
 }
 
-.#{$namaspace}-icon-bg-link:before {
+.cq-icon-bg-link:before {
   content: "\e641";
 }
 
-.#{$namaspace}-icon-heikeji1:before {
+.cq-icon-heikeji1:before {
   content: "\e62b";
 }
 
-.#{$namaspace}-icon-agora_heikeji:before {
+.cq-icon-agora_heikeji:before {
   content: "\e610";
 }
 
-.#{$namaspace}-icon-heikeji2:before {
+.cq-icon-heikeji2:before {
   content: "\e705";
 }
 
-.#{$namaspace}-icon-heikeji3:before {
+.cq-icon-heikeji3:before {
   content: "\e600";
 }
 
