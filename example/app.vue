@@ -1,6 +1,8 @@
 <template>
   测试效果
   <Button :size="123">这里是按钮</Button>
+  <CQButton :size="123546" color="red">长轻按钮</CQButton>
+  <CQIcon color="green" :size="30">icon</CQIcon>
 </template>
 
 <script lang="ts" setup>

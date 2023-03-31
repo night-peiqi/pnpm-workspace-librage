@@ -1,3 +1,7 @@
+import { withInstall } from '@cq/utils/withInstall'
 import Button from './button.vue'
 
-export default Button
+
+const CQButton = withInstall<typeof Button>(Button)
+
+export default CQButton

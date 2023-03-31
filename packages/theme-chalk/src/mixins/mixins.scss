@@ -1,0 +1,2 @@
+@use 'config' as *;
+@forward 'config'; // 把里面的变量变成全局变量
