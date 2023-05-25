@@ -8,20 +8,26 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "@rollup/plugin-commonjs": "^25.0.0",
+    "@rollup/plugin-node-resolve": "^15.0.2",
     "@types/gulp": "^4.0.10",
     "@types/gulp-autoprefixer": "^0.0.33",
     "@types/gulp-clean-css": "^4.3.0",
     "@types/gulp-sass": "^5.0.0",
     "@types/sass": "^1.45.0",
+    "@vue/compiler-sfc": "^3.3.4",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^8.0.0",
     "gulp-clean-css": "^4.3.0",
     "gulp-sass": "^5.1.0",
     "gulp-typescript": "^6.0.0-alpha.1",
+    "rollup": "^3.23.0",
+    "rollup-plugin-typescript2": "^0.34.1",
+    "rollup-plugin-vue": "^6.0.0",
     "sass": "^1.60.0",
     "sucrase": "^3.31.0",
     "typescript": "^5.0.2",
-    "vue": "^3.2.36"
+    "vue": "^3.2.25"
   },
   "dependencies": {
     "@cq/components": "workspace:^1.0.0",
