@@ -10,6 +10,7 @@
   "devDependencies": {
     "@rollup/plugin-commonjs": "^25.0.0",
     "@rollup/plugin-node-resolve": "^15.0.2",
+    "@rollup/plugin-typescript": "^11.1.1",
     "@types/gulp": "^4.0.10",
     "@types/gulp-autoprefixer": "^0.0.33",
     "@types/gulp-clean-css": "^4.3.0",
@@ -26,6 +27,7 @@
     "rollup-plugin-vue": "^6.0.0",
     "sass": "^1.60.0",
     "sucrase": "^3.31.0",
+    "tslib": "^2.5.2",
     "typescript": "^5.0.2",
     "vue": "^3.2.25"
   },

@@ -1,5 +1,5 @@
-import { spawn } from 'child_process';
-import { projectRoot } from './paths';
+import { spawn } from "child_process";
+import { projectRoot } from "./paths";
 
 /**
  * 给函数添加名字
@@ -18,15 +18,27 @@ export const withTaskName = (name: string, fn) =>
  * @returns Promise
  */
 export const run = async (command: string) => {
-  console.log('执行命令：', command);
-  return new Promise(resolve => {
-    const [cmd, ...args] = command.split(' ');
+  console.log("执行命令：", command);
+  return new Promise((resolve) => {
+    const [cmd, ...args] = command.split(" ");
     // 子进程执行命令
     const app = spawn(cmd, args, {
       cwd: projectRoot,
-      stdio: 'inherit', // 将这个子进程输出共享给父进程
+      stdio: "inherit", // 将这个子进程输出共享给父进程
       shell: true,
     });
-    app.on('close', resolve);
+    app.on("close", resolve);
   });
+};
+
+/**
+ * 重写打包后的组件库路径
+ * @param format
+ * @returns
+ */
+export const pathRewriter = (format) => {
+  return (id: string) => {
+    id = id.replaceAll("@cq", `cq/${format}`);
+    return id;
+  };
 };
