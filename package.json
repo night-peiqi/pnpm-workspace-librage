@@ -17,6 +17,7 @@
     "@types/gulp-sass": "^5.0.0",
     "@types/sass": "^1.45.0",
     "@vue/compiler-sfc": "^3.3.4",
+    "fast-glob": "^3.2.12",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^8.0.0",
     "gulp-clean-css": "^4.3.0",
@@ -27,6 +28,7 @@
     "rollup-plugin-vue": "^6.0.0",
     "sass": "^1.60.0",
     "sucrase": "^3.31.0",
+    "ts-morph": "^18.0.0",
     "tslib": "^2.5.2",
     "typescript": "^5.0.2",
     "vue": "^3.2.25"

@@ -1,4 +1,4 @@
-import { withInstall } from "@cq/utils/withInstall";
+import { withInstall } from "@cq/utils";
 import Icon from "./src/icon.vue";
 
 const CQIcon = withInstall<typeof Icon>(Icon);

@@ -8,21 +8,21 @@ import vue from "rollup-plugin-vue";
 import typescript from "rollup-plugin-typescript2";
 import { componentRoot, outDir } from "./utils/paths";
 import { buildConfig } from "./utils/config";
-import { pathRewriter } from "./utils";
 
 /**
  * 把所有组件打包到一个js文件里
  * @returns 输出打包的文件到 outdir 目录
  */
 const buildFull = async () => {
-  // rollup 打包配置
+  // rollup 编译配置
   const config = {
     input: path.resolve(__dirname, "../packages/components/index.ts"), // 打包入口
     plugins: [nodeResolve(), typescript(), vue(), commonjs()],
     external: (id) => /^vue/.test(id), // 打包的时候不打包vue代码
   };
 
-  // bundle 输入配置
+  // 输出不同模块规范的代码
+  // 输出配置
   const buildConfig = [
     {
       format: "umd", // 打包的格式
@@ -40,7 +40,7 @@ const buildFull = async () => {
     },
   ];
 
-  // 解析组件库，执行 tree-shaking，生成 bundle
+  // 生成抽象语法树 ast，执行 tree-shaking，生成 bundle
   const bundle = await rollup(config);
 
   // 根据不同的打包模式 生成不同的 bundle 并写入文件
@@ -67,7 +67,7 @@ const buildMultipleEntry = async () => {
   const config = {
     input: entries,
     plugins: [nodeResolve(), vue(), typescript()],
-    external: (id: string) => /^vue/.test(id) || /^@w-plus/.test(id),
+    external: (id: string) => /^vue/.test(id) || /^@cq/.test(id), // 排除掉vue和@cq的依赖
   };
 
   const bundle = await rollup(config);
