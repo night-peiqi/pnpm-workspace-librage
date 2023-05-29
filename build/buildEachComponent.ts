@@ -1,5 +1,5 @@
 import { series } from "gulp";
-import FastGlob, { sync } from "fast-glob";
+import glob, { sync } from "fast-glob";
 import path from "path";
 import fs from "fs/promises";
 import { nodeResolve } from "@rollup/plugin-node-resolve";
@@ -73,7 +73,7 @@ const genTypes = async () => {
   });
 
   // **/* 组件库下所有目录中的文件
-  const filePaths = sync("**/*", {
+  const filePaths = await glob("**/*", {
     // 查找组件库下所有文件
     cwd: componentRoot,
     onlyFiles: true,
@@ -86,14 +86,16 @@ const genTypes = async () => {
   await Promise.all(
     filePaths.map(async function (file) {
       if (file.endsWith(".vue")) {
+        // 读取单文件组件内容
         const content = await fs.readFile(file, "utf8");
-        // 把单文件组件编译成为js描述对象
+        // 把内容编译成为js描述对象
         const sfc = VueCompiler.parse(content);
+        // TODO 如果组件中使用setup语法，要使用 scriptSetup
         const { script } = sfc.descriptor;
         if (script) {
           // 拿到vue组件中的 script 部分代码
           let content = script.content;
-          // 创建TypeScript文件
+          // 创建TypeScript源文件
           const sourceFile = project.createSourceFile(file + ".ts", content);
           sourceFiles.push(sourceFile);
         }
@@ -108,22 +110,19 @@ const genTypes = async () => {
   await project.emit({
     emitOnlyDtsFiles: true,
   });
-  console.log("sourceFiles====", sourceFiles);
-  // const tasks = sourceFiles.map(async (sourceFile: any) => {
-  //   console.log("sourceFile", JSON.stringify(sourceFile));
-  //   const emitOutput = sourceFile.getEmitOutput();
-  //   console.log("emitOutput", JSON.stringify(emitOutput));
-  //   const tasks = emitOutput.getOutputFiles().map(async (outputFile: any) => {
-  //     const filepath = outputFile.getFilePath();
-  //     await fs.mkdir(path.dirname(filepath), {
-  //       recursive: true,
-  //     });
-  //     // await fs.writeFile(filepath, pathRewriter("es")(outputFile.getText()));
-  //   });
-  //   await Promise.all(tasks);
-  // });
 
-  // await Promise.all(tasks);
+  sourceFiles.map(async (sourceFile: any) => {
+    const emitOutput = sourceFile.getEmitOutput();
+    emitOutput.getOutputFiles().map(async (outputFile: any) => {
+      const filepath = outputFile.getFilePath();
+      // 创建类型声明文件
+      await fs.mkdir(path.dirname(filepath), {
+        recursive: true,
+      });
+      // 写入文件内容
+      await fs.writeFile(filepath, outputFile.getText());
+    });
+  });
 };
 
 export const buildEachComponent = series(buildComponent, genTypes);

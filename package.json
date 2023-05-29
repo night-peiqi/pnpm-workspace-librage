@@ -29,9 +29,8 @@
     "sass": "^1.60.0",
     "sucrase": "^3.31.0",
     "ts-morph": "^18.0.0",
-    "tslib": "^2.5.2",
     "typescript": "^5.0.2",
-    "vue": "^3.2.25"
+    "vue": "^3.3.4"
   },
   "dependencies": {
     "@cq/components": "workspace:^1.0.0",

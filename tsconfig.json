@@ -8,7 +8,7 @@
     "esModuleInterop": true, // 支持es6，commonjs模块
     "jsx": "preserve", // jsx 不转
     "noLib": false, // 不处理类库
-    "target": "ES6", // 遵循es6版本
+    "target": "es6", // 遵循es6版本
     "sourceMap": true,
     "lib": ["ESNext", "DOM"], // 编译时用的库
     "allowSyntheticDefaultImports": true, // 允许没有导出的模块中导入
@@ -18,7 +18,8 @@
     "strict": true, // 是否启动严格模式
     "skipLibCheck": true // 跳过类库检测
   },
-  "exclude": [ // 排除掉哪些类库
+  "exclude": [
+    // 排除掉哪些类库
     "node_modules",
     "**/__tests__",
     "dist/**"

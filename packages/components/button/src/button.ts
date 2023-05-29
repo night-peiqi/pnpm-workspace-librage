@@ -8,5 +8,3 @@ export const buttonProps = {
 
 // 导出 props 参数的类型
 export type ButtonProps = ExtractPropTypes<typeof buttonProps>;
-
-export const test12345 = 123;
