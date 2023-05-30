@@ -70,7 +70,12 @@ importers:
       vite: 4.3.8_sass@1.62.1
 
   packages/components:
-    specifiers: {}
+    specifiers:
+      '@cq/theme-chalk': workspace:^1.0.0
+      '@cq/utils': workspace:^1.0.0
+    dependencies:
+      '@cq/theme-chalk': link:../theme-chalk
+      '@cq/utils': link:../utils
 
   packages/theme-chalk:
     specifiers: {}

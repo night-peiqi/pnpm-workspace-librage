@@ -36,9 +36,9 @@ export const run = async (command: string) => {
  * @param format
  * @returns
  */
-export const pathRewriter = (format) => {
-  return (id: string) => {
-    id = id.replaceAll("@cq", `cq/${format}`);
-    return id;
-  };
-};
+// export const pathRewriter = (format) => {
+//   return (id: string) => {
+//     id = id.replaceAll("@cq", `cq/${format}`);
+//     return id;
+//   };
+// };

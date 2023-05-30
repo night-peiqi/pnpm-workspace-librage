@@ -1,4 +1,4 @@
-import { series } from "gulp";
+import { series, parallel } from "gulp";
 import glob, { sync } from "fast-glob";
 import path from "path";
 import fs from "fs/promises";
@@ -11,8 +11,9 @@ import { Project, SourceFile } from "ts-morph";
 import * as VueCompiler from "@vue/compiler-sfc";
 import { componentRoot, outDir, projectRoot } from "./utils/paths";
 import { buildConfig } from "./utils/config";
+import { run } from "./utils";
 
-// 打包每个组件
+// 打包每个组件，每个组件生成一个js文件
 const buildComponent = () => {
   // 查找components下所有的组件目录 ["icon", "button"]
   const files = sync("*", {
@@ -125,4 +126,36 @@ const genTypes = async () => {
   });
 };
 
-export const buildEachComponent = series(buildComponent, genTypes);
+// 拷贝类型文件到components的每个路径
+function copyTypes() {
+  const src = path.resolve(outDir, "types/components/");
+  const copy = (module) => {
+    let output = path.resolve(outDir, module, "components");
+    return () => run(`cp -r ${src}/* ${output}`);
+  };
+  return parallel(copy("es"), copy("lib"));
+}
+
+async function buildComponentEntry() {
+  const config = {
+    input: path.resolve(componentRoot, "index.ts"),
+    plugins: [typescript()],
+    external: () => true,
+  };
+  const bundle = await rollup(config);
+  return Promise.all(
+    Object.values(buildConfig)
+      .map((config) => ({
+        format: config.format,
+        file: path.resolve(config.output.path, "components/index.js"),
+      }))
+      .map((config) => bundle.write(config as OutputOptions))
+  );
+}
+
+export const buildEachComponent = series(
+  buildComponent,
+  genTypes,
+  copyTypes(),
+  buildComponentEntry
+);

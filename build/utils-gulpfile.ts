@@ -28,11 +28,11 @@ const tsTojs = (output, config) => {
 };
 
 // 把打包的结果放到全局dist中
-const copyFull = (output, packageName, config) => {
-  const tp = path.resolve(outDir, config.output.name, packageName);
-  console.log("sp======", output, tp);
-  return () => src(`${output}/**`).pipe(dest(tp));
-};
+// const copyFull = (output, packageName, config) => {
+//   const tp = path.resolve(outDir, config.output.name, packageName);
+//   console.log("sp======", output, tp);
+//   return () => src(`${output}/**`).pipe(dest(tp));
+// };
 
 // 只需要把 ts 转译 js
 export const buildPageckages = (buildPath, packageName) => {
