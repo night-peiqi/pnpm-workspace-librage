@@ -5,7 +5,6 @@ importers:
   .:
     specifiers:
       '@cq/components': workspace:^1.0.0
-      '@cq/theme-chalk': workspace:^1.0.0
       '@cq/utils': workspace:^1.0.0
       '@rollup/plugin-commonjs': ^25.0.0
       '@rollup/plugin-node-resolve': ^15.0.2
@@ -32,7 +31,6 @@ importers:
       vue: ^3.3.4
     dependencies:
       '@cq/components': link:packages/components
-      '@cq/theme-chalk': link:packages/theme-chalk
       '@cq/utils': link:packages/utils
     devDependencies:
       '@rollup/plugin-commonjs': 25.0.0_rollup@3.23.0
@@ -71,14 +69,9 @@ importers:
 
   packages/components:
     specifiers:
-      '@cq/theme-chalk': workspace:^1.0.0
       '@cq/utils': workspace:^1.0.0
     dependencies:
-      '@cq/theme-chalk': link:../theme-chalk
       '@cq/utils': link:../utils
-
-  packages/theme-chalk:
-    specifiers: {}
 
   packages/utils:
     specifiers: {}

@@ -10,7 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@cq/theme-chalk": "workspace:^1.0.0",
     "@cq/utils": "workspace:^1.0.0"
   }
 }

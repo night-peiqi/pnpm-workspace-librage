@@ -34,7 +34,6 @@
   },
   "dependencies": {
     "@cq/components": "workspace:^1.0.0",
-    "@cq/theme-chalk": "workspace:^1.0.0",
     "@cq/utils": "workspace:^1.0.0"
   }
 }
